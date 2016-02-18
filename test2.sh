@@ -1,5 +1,10 @@
 #!/bin/sh
 
 INPUT="someletters_12345_moreleters.ext"
-SUBSTRING=${INPUT:12:5}
-echo $SUBSTRING
+
+SIZE=${#INPUT}
+for i in `seq 0 $SIZE`; 
+do 
+	SUBSTRING=${INPUT:i:1}
+	echo $SUBSTRING
+done
