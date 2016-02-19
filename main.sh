@@ -2,6 +2,17 @@
 #!/bin/sh
 
 C="DEFGHIJKLMNOPQRSTUVWXYZABC"
+uc=0
+while [ $uc -ne 99 ]; do
+echo --------------------------------------------------
+echo Enter 1 for Key cipher
+echo Enter 2 for Rails
+echo Enter 99 for exit
+read uc
+clear
+if [ $uc -eq 1 ]; then
+ echo hi
+elif [ $uc -eq 2 ]; then 
 echo How many row you wan?
 read row
 
@@ -47,3 +58,7 @@ done
 
 
 done < "$1"
+
+fi
+
+done
