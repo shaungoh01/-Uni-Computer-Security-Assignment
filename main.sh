@@ -11,6 +11,7 @@ echo $OUT
 INPUT=$line
 SIZE=${#INPUT}
 row1=$[$row-1]
+result=""
 for r in `seq 0 $row1`;
 do
 	r1=$[$row-1]
@@ -22,10 +23,10 @@ do
 		for x in `seq 0 $[($SIZE-1-$r)/$P]`;
 		do
 		        SUBSTRING=${INPUT:x1:1}
-		        echo $SUBSTRING:$x1
+		        result="$result$SUBSTRING"
 			x1=$[$x1+$P]
 		done
-		echo "--"
+		echo $result
 	fi
 done
 
