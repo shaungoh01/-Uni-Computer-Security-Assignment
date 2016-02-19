@@ -2,7 +2,7 @@
 #!/bin/sh
 
 C="DEFGHIJKLMNOPQRSTUVWXYZABC"
-row=4
+row=3
 while IFS='' read -r line || [[ -n $line ]]; do
 
 OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
@@ -26,8 +26,21 @@ do
 		        result="$result$SUBSTRING"
 			x1=$[$x1+$P]
 		done
-		echo $result
+	else
+		x1=$r
+		t=0
+        	while (("$x1" < "$SIZE" )); do
+			SUBSTRING=${INPUT:x1:1}
+                        result="$result$SUBSTRING"
+		if [ $((t%2)) -eq 0 ]; then
+			x1=$[$x1+$F]
+		else
+			x1=$[$x1+$S]
+		fi
+		t=$[$t+1]
+		done
 	fi
+	echo $result
 done
 
 
