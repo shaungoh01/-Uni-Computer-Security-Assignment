@@ -18,11 +18,12 @@ do
 	S=$[$r*2]
 	F=$[$P-S]
 	if [ "$F" == "$P" ] || [ "$S" == "$P" ] ; then
-		for x in `seq 0 $SIZE`;
+		x1=$r
+		for x in `seq 0 $[($SIZE-1-$r)/$P]`;
 		do
-		        SUBSTRING=${INPUT:x:1}
-		        echo $SUBSTRING
-			x=$[$x + $p-1]
+		        SUBSTRING=${INPUT:x1:1}
+		        echo $SUBSTRING:$x1
+			x1=$[$x1+$P]
 		done
 		echo "--"
 	fi
