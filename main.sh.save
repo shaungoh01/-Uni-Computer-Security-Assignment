@@ -1,0 +1,36 @@
+#!/bin/sh
+
+C="DEFGHIJKLMNOPQRSTUVWXYZABC"
+row=4
+while IFS='' read -r line || [[ -n $line ]]; do
+
+INPUT=$line
+SIZE=${#INPUT}
+P=(row-1)*2
+for r in `seq 0 $row`;
+do
+	S=(r*2)
+	F=P-S
+	x=0
+	t=0
+	if [ "$F" == "$P"] || [
+
+foo=6
+
+if [ $((foo%2)) -eq 0 ];
+then
+    echo "even";
+else
+    echo "odd";
+fi
+
+
+	while [ $X -lt $SIZE ]
+	
+        SUBSTRING=${INPUT:i:1}
+        echo $SUBSTRING
+	done
+done
+
+
+done < "$1"

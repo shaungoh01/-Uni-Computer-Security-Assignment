@@ -1,10 +1,12 @@
 #!/bin/sh
 
-INPUT="someletters_12345_moreleters.ext"
+foo=7
 
-SIZE=${#INPUT}
-for i in `seq 0 $SIZE`; 
-do 
-	SUBSTRING=${INPUT:i:1}
-	echo $SUBSTRING
-done
+if [ $((foo%2)) -eq 0 ];
+then
+    echo "even";
+else
+    echo "odd";
+fi
+
+
