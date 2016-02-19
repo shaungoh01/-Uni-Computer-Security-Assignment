@@ -2,11 +2,13 @@
 #!/bin/sh
 
 C="DEFGHIJKLMNOPQRSTUVWXYZABC"
-row=3
+echo How many row you wan?
+read row
+
 while IFS='' read -r line || [[ -n $line ]]; do
 
-OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
-echo $OUT
+##OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
+##echo $OUT
 
 INPUT=$line
 SIZE=${#INPUT}
