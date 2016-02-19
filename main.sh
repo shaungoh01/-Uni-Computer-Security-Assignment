@@ -11,13 +11,21 @@ echo Enter 99 for exit
 read uc
 clear
 if [ $uc -eq 1 ]; then
- echo hi
+	echo enter 26 character key for encryption
+	read C
+	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	echo "=========="
+	while IFS='' read -r line || [[ -n $line ]]; do
+
+	OUT=`echo "$line" | tr "$P" "$C"`
+	echo $OUT
+	done < "$1"
+
 elif [ $uc -eq 2 ]; then 
 echo How many row you wan?
 read row
 
 while IFS='' read -r line || [[ -n $line ]]; do
-
 ##OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
 ##echo $OUT
 
