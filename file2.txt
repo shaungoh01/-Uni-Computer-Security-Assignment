@@ -1,1 +1,2 @@
-This is file two in testing
+THIS IS ANOTHER FILE TO TEST WITH
+THIS IS A SIMPLE LAB
