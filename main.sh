@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 C="DEFGHIJKLMNOPQRSTUVWXYZABC"
@@ -17,7 +16,10 @@ if [ $uc -eq 1 -o $uc -eq 3 ]; then
 	read C
 	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	echo "=========="
+	C=`echo "$C" | tr '[:lower:]' '[:upper:]'`
  	C="$C""${P//[$C]/}"
+	P="$P"`echo "$P" | tr '[:upper:]' '[:lower:]'`
+	C="$C"`echo "$C" | tr '[:upper:]' '[:lower:]'`
 	echo c = $C
 	echo "=========="
 	echo Do you wan to save this?$'('Enter 1 for yes and any number for no$')'
