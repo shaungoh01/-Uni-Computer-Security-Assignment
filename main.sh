@@ -6,32 +6,40 @@ uc=0 #user choice
 ucs=0 #user choice to save
 while [ $uc -ne 99 ]; do
 echo --------------------------------------------------
-echo Enter 1 for Key cipher
+echo Enter 1 for Key cipher encryption
 echo Enter 2 for Rails
+echo Enter 3 for Key cipher decryption
 echo Enter 99 for exit
 read uc
 clear
-if [ $uc -eq 1 ]; then
-	echo enter the key for encryption
+if [ $uc -eq 1 -o $uc -eq 3 ]; then
+	echo enter the key for encryption/decryption
 	read C
-	echo Do you wan to save this?$'('Enter 1 for yes and any number for no$')'
-	read ucs
 	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	echo "=========="
-	C="$C""${P//$C}"
+ 	C="$C""${P//[$C]/}"
 	echo c = $C
+	echo "=========="
+	echo Do you wan to save this?$'('Enter 1 for yes and any number for no$')'
+        read ucs
 	Tosave=""
+	Filename="encrypted_data.txt"
+	if [ $uc -eq 3 ]; then
+		Temp=$P
+		P=$C
+		C=$Temp
+		Filename="decrypted_data.txt"
+	fi
 	while IFS='' read -r line || [[ -n $line ]]; do
 
 	OUT=`echo "$line" | tr "$P" "$C"`
 	echo $OUT
 	Tosave=$Tosave$'\n'$OUT
         done < "$1"
-	echo $Tosave
 	if [ $ucs -eq 1 ]; then
-		echo $Tosave > encrypted_data.txt
+		echo $Tosave > $Filename
 	fi
-elif [ $uc -eq 2 ]; then 
+elif [ $uc -eq 2 ]; then
 echo How many row you wan?
 read row
 
