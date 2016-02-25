@@ -31,7 +31,7 @@ while IFS='' read -r line || [[ -n $line ]]; do
 ##OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
 ##echo $OUT
 
-INPUT=$line
+INPUT="${line// /}"
 SIZE=${#INPUT} #find size of the input
 row1=$[$row-1] #just row -1 due to starting from 0
 result=""
