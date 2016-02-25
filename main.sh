@@ -11,10 +11,12 @@ echo Enter 99 for exit
 read uc
 clear
 if [ $uc -eq 1 ]; then
-	echo enter 26 character key for encryption
+	echo enter the key for encryption
 	read C
 	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	echo "=========="
+	C="$C""${P//$C}"
+	echo c = $C
 	while IFS='' read -r line || [[ -n $line ]]; do
 
 	OUT=`echo "$line" | tr "$P" "$C"`
