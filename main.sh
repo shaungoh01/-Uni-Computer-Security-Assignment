@@ -3,6 +3,7 @@
 
 C="DEFGHIJKLMNOPQRSTUVWXYZABC"
 uc=0 #user choice
+ucs=0 #user choice to save
 while [ $uc -ne 99 ]; do
 echo --------------------------------------------------
 echo Enter 1 for Key cipher
@@ -13,16 +14,23 @@ clear
 if [ $uc -eq 1 ]; then
 	echo enter the key for encryption
 	read C
+	echo Do you wan to save this?$'('Enter 1 for yes and any number for no$')'
+	read ucs
 	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	echo "=========="
 	C="$C""${P//$C}"
 	echo c = $C
+	Tosave=""
 	while IFS='' read -r line || [[ -n $line ]]; do
 
 	OUT=`echo "$line" | tr "$P" "$C"`
 	echo $OUT
-	done < "$1"
-
+	Tosave=$Tosave$'\n'$OUT
+        done < "$1"
+	echo $Tosave
+	if [ $ucs -eq 1 ]; then
+		echo $Tosave > encrypted_data.txt
+	fi
 elif [ $uc -eq 2 ]; then 
 echo How many row you wan?
 read row
