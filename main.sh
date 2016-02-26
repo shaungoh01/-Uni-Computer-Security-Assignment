@@ -14,6 +14,19 @@ clear
 if [ $uc -eq 1 -o $uc -eq 3 ]; then
 	echo enter the key for encryption/decryption
 	read C
+	Temp=""
+	tminus=0
+	Temp1=$C
+	SizeC=${#C}
+		for x in `seq 0 $SizeC`;
+		do
+			temp3=${Temp1:0:1}
+			Temp1=${Temp1:1:${#Temp1}}
+			T1S1=${#Temp1}
+			Temp1="${Temp1//$temp3/}"
+			Temp=$Temp$temp3
+		done
+	C=$Temp
 	P="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	echo "=========="
 	C=`echo "$C" | tr '[:lower:]' '[:upper:]'`
@@ -86,6 +99,53 @@ done
 
 
 done < "$1"
+
+elif [ $uc -eq 4 ]; then
+echo How many row you need to decrypt?
+read row
+
+while IFS='' read -r line || [[ -n $line ]]; do
+##OUT=`echo "THIS IS A SIMPLE LAB" | tr $line $C`
+##echo $OUT
+
+INPUT="${line// /}"
+SIZE=${#INPUT} #find size of the input
+row1=$[$row-1] #just row -1 due to starting from 0
+result=""
+for r in `seq 0 $row1`;
+do
+        r1=$[$row-1]
+        P=$[$r1*2] #p stand for primary gap
+        S=$[$r*2] #s stand for second
+        F=$[$P-S] #f stand for first
+        if [ "$F" == "$P" ] || [ "$S" == "$P" ] ; then #if is the top and bttom row, no second gap
+                x1=$r #x1 for finding possition of the char that need to be sub
+                for x in `seq 0 $[($SIZE-1-$r)/$P]`; #take the start of the row and devide and see how many char in the row
+                do
+                        SUBSTRING=${INPUT:x1:1}
+                        result="$result$SUBSTRING" #glue result together
+                        x1=$[$x1+$P] #find the next char ata
+                done
+        else
+                x1=$r
+		t=0 #to trigger between first and second gap
+                while (("$x1" < "$SIZE" )); do
+                        SUBSTRING=${INPUT:x1:1}
+                        result="$result$SUBSTRING"
+                if [ $((t%2)) -eq 0 ]; then
+                        x1=$[$x1+$F]
+                else
+                        x1=$[$x1+$S]
+                fi
+                t=$[$t+1]
+                done
+        fi
+        echo $result
+done
+
+
+done < "$1"
+
 
 fi
 
