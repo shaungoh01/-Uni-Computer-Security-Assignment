@@ -15,14 +15,12 @@ if [ $uc -eq 1 -o $uc -eq 3 ]; then
 	echo enter the key for encryption/decryption
 	read C
 	Temp=""
-	tminus=0
 	Temp1=$C
 	SizeC=${#C}
 		for x in `seq 0 $SizeC`;
 		do
 			temp3=${Temp1:0:1}
 			Temp1=${Temp1:1:${#Temp1}}
-			T1S1=${#Temp1}
 			Temp1="${Temp1//$temp3/}"
 			Temp=$Temp$temp3
 		done
@@ -68,8 +66,7 @@ row1=$[$row-1] #just row -1 due to starting from 0
 result=""
 for r in `seq 0 $row1`;
 do
-	r1=$[$row-1]
-	P=$[$r1*2] #p stand for primary gap
+	P=$[$row1*2] #p stand for primary gap
 	S=$[$r*2] #s stand for second
 	F=$[$P-S] #f stand for first
 	if [ "$F" == "$P" ] || [ "$S" == "$P" ] ; then #if is the top and bttom row, no second gap
@@ -114,8 +111,7 @@ row1=$[$row-1] #just row -1 due to starting from 0
 result=""
 for r in `seq 0 $row1`;
 do
-        r1=$[$row-1]
-        P=$[$r1*2] #p stand for primary gap
+        P=$[$row1*2] #p stand for primary gap
         S=$[$r*2] #s stand for second
         F=$[$P-S] #f stand for first
         if [ "$F" == "$P" ] || [ "$S" == "$P" ] ; then #if is the top and bttom row, no second gap
