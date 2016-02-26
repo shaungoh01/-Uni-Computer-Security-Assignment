@@ -109,25 +109,18 @@ INPUT="${line// /}"
 SIZE=${#INPUT} #find size of the input
 row1=$[$row-1] #just row -1 due to starting from 0
 result=""
+
 for r in `seq 0 $row1`;
 do
         P=$[$row1*2] #p stand for primary gap
         S=$[$r*2] #s stand for second
         F=$[$P-S] #f stand for first
         if [ "$F" == "$P" ] || [ "$S" == "$P" ] ; then #if is the top and bttom row, no second gap
-                x1=$r #x1 for finding possition of the char that need to be sub
-                for x in `seq 0 $[($SIZE-1-$r)/$P]`; #take the start of the row and devide and see how many char in the row
-                do
-                        SUBSTRING=${INPUT:x1:1}
-                        result="$result$SUBSTRING" #glue result together
-                        x1=$[$x1+$P] #find the next char ata
-                done
+                NROW[$r]=$[($SIZE-1-$r)/$P]
         else
                 x1=$r
 		t=0 #to trigger between first and second gap
                 while (("$x1" < "$SIZE" )); do
-                        SUBSTRING=${INPUT:x1:1}
-                        result="$result$SUBSTRING"
                 if [ $((t%2)) -eq 0 ]; then
                         x1=$[$x1+$F]
                 else
@@ -135,9 +128,10 @@ do
                 fi
                 t=$[$t+1]
                 done
+		NROW[$r]=$t
         fi
-        echo $result
 done
+
 
 
 done < "$1"
